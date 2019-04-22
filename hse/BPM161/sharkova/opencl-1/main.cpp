@@ -67,13 +67,13 @@ int main()
         }
 
         // create a message to send to kernel
-        std::ifstream input_stream("input.txt");
+        std::ifstream input_stream("/home/darya/CLionProjects/conv/input.txt");
         int N, M;
         input_stream >> N >> M;
 
-        double a[N * N];
-        double b[M * M];
-        double c[N * N];
+        auto* a = new double[N * N];
+        auto* b = new double[M * M];
+        auto* c = new double[N * N];
         int a_size = N * N;
         int b_size = M * M;
         int c_size = N * N;
@@ -98,7 +98,7 @@ int main()
 
         queue.enqueueReadBuffer(dev_c, CL_TRUE, 0, sizeof(double) * c_size, c);
 
-        std::ofstream output_stream("output.txt");
+        std::ofstream output_stream("/home/darya/CLionProjects/conv/output.txt");
         output_stream << std::fixed << std::setprecision(3);
         for (size_t i = 0; i < N; ++i)
         {
@@ -109,7 +109,11 @@ int main()
             }
             output_stream << std::endl;
         }
+
         output_stream.close();
+        delete[] a;
+        delete[] b;
+        delete[] c;
     }
     catch (cl::Error& e)
     {
