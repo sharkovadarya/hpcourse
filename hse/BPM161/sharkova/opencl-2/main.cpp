@@ -105,7 +105,7 @@ int main()
         }
 
         // create a message to send to kernel
-        std::ifstream input_stream("/home/darya/CLionProjects/prefix-sum/input.txt");
+        std::ifstream input_stream("input.txt");
         int N;
         input_stream >> N;
 
@@ -122,7 +122,7 @@ int main()
         block_prefix_sum(a, b, sums, N, program, context, queue, block_size);
 
 
-        std::ofstream output_stream("/home/darya/CLionProjects/prefix-sum/output.txt");
+        std::ofstream output_stream("output.txt");
         output_stream << std::fixed << std::setprecision(3);
         for (int i = 0; i < N; i++)
         {
